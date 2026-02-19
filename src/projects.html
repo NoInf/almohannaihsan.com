@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project portfolio for Ihsan Almohanna.">
+  <title>Projects | Ihsan Almohanna</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ihsan<span class="brand-accent">.</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-open="false">
+        <a href="index.html">Home</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container page-hero">
+      <p class="eyebrow">Selected Work</p>
+      <h1>Projects</h1>
+      <p>Repository listing of all projects. View code, documentation, and more on GitHub.</p>
+      <div class="view-tabs">
+        <a href="projects.html" class="tab-link active">Repositories</a>
+        <a href="projects-design.html" class="tab-link">Design Works</a>
+      </div>
+    </section>
+
+    <section class="container section list-stack reveal">
+      <div id="projects-container"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 Ihsan Almohanna</p>
+      <div class="footer-links">
+        <a href="https://github.com/NoInf" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Render all projects on Projects page
+    function renderProjectsPage() {
+      const container = document.getElementById('projects-container');
+      if (!container) return;
+
+      container.innerHTML = PROJECTS.map(project => `
+        <article class="card project-card" data-project-id="${project.id}">
+          <div class="card-header">
+            <h2>${project.name}</h2>
+            <span class="status-badge ${project.isPublic ? 'public' : 'private'}">
+              ${project.isPublic ? 'Public' : 'Private'}
+            </span>
+          </div>
+          <p>${project.description}</p>
+          <div class="project-meta">
+            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <div class="project-links">
+            ${project.hasDemo ? `<button class="btn btn-secondary" onclick="window.open('${project.demoPath}', '_blank')">Show GUI</button>` : ''}
+            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">Show GitHub</a>` : '<span class="btn btn-disabled">Private Repo</span>'}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', renderProjectsPage);
+  </script>
+</body>
+</html>

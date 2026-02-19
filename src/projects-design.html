@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UI Design showcase for Ihsan Almohanna's projects.">
+  <title>Design Works | Ihsan Almohanna</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ihsan<span class="brand-accent">.</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav" data-open="false">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container page-hero">
+      <p class="eyebrow">Design Showcase</p>
+      <h1>Design Works</h1>
+      <p>Live UI/UX demonstrations of my design work. Click any project to see the interactive demo.</p>
+      <div class="view-tabs">
+        <a href="projects.html" class="tab-link">Repositories</a>
+        <a href="projects-design.html" class="tab-link active">Design Works</a>
+      </div>
+    </section>
+
+    <section class="container section list-stack reveal">
+      <div id="designs-container"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 Ihsan Almohanna</p>
+      <div class="footer-links">
+        <a href="https://github.com/NoInf" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/projects-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Render only projects with demos on Design Works page
+    function renderDesignWorksPage() {
+      const container = document.getElementById('designs-container');
+      if (!container) return;
+
+      const projectsWithDemos = PROJECTS.filter(project => project.hasDemo);
+
+      if (projectsWithDemos.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No design demos available yet.</p>';
+        return;
+      }
+
+      container.innerHTML = projectsWithDemos.map(project => `
+        <article class="card project-card design-card" data-project-id="${project.id}" onclick="window.open('${project.demoPath}', '_blank')">
+          <div class="card-header">
+            <h2>${project.name}</h2>
+            <span class="demo-badge">✓ Demo Ready</span>
+          </div>
+          <p>${project.description}</p>
+          <div class="project-meta">
+            ${project.tags.filter(tag => tag !== 'Public Repo' && tag !== 'Private').map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          <div class="project-links">
+            <button class="btn btn-primary" onclick="event.stopPropagation(); window.open('${project.demoPath}', '_blank')">Show GUI</button>
+            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-secondary" onclick="event.stopPropagation()">Show GitHub</a>` : ''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', renderDesignWorksPage);
+  </script>
+</body>
+</html>

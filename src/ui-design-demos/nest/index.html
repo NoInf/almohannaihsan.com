@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nest - Automation Bot Framework UI Demo">
+  <title>Nest UI Demo | Ihsan Almohanna</title>
+  <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+  <div class="demo-container">
+    <header class="demo-header">
+      <div class="header-content">
+        <h1>Nest</h1>
+        <p>Automation Bot Framework</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat">
+          <span class="stat-value">12</span>
+          <span class="stat-label">Tasks</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">8</span>
+          <span class="stat-label">Active</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">4</span>
+          <span class="stat-label">Completed</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="demo-main">
+      <section class="tasks-section">
+        <h2>Recent Tasks</h2>
+        <div class="task-list">
+          <div class="task-item active">
+            <div class="task-header">
+              <h3>Email Automation</h3>
+              <span class="badge running">● Running</span>
+            </div>
+            <p class="task-description">Process daily emails and organize by category</p>
+            <div class="task-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%;"></div>
+              </div>
+              <span class="progress-text">65% complete</span>
+            </div>
+          </div>
+
+          <div class="task-item completed">
+            <div class="task-header">
+              <h3>Data Sync</h3>
+              <span class="badge success">✓ Complete</span>
+            </div>
+            <p class="task-description">Sync customer data from API to database</p>
+            <div class="task-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+              </div>
+              <span class="progress-text">100% complete</span>
+            </div>
+          </div>
+
+          <div class="task-item">
+            <div class="task-header">
+              <h3>Report Generation</h3>
+              <span class="badge pending">⏳ Scheduled</span>
+            </div>
+            <p class="task-description">Generate weekly performance reports</p>
+            <div class="task-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%;"></div>
+              </div>
+              <span class="progress-text">Waiting to start</span>
+            </div>
+          </div>
+
+          <div class="task-item active">
+            <div class="task-header">
+              <h3>AI Integration</h3>
+              <span class="badge running">● Running</span>
+            </div>
+            <p class="task-description">Connect multiple AI models for smart routing</p>
+            <div class="task-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 42%;"></div>
+              </div>
+              <span class="progress-text">42% complete</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="demo-sidebar">
+        <div class="sidebar-card">
+          <h3>System Status</h3>
+          <div class="status-indicator">
+            <span class="status-dot online"></span>
+            <span>Online</span>
+          </div>
+          <p class="status-message">All systems operational</p>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Quick Actions</h3>
+          <button class="action-btn">+ New Task</button>
+          <button class="action-btn">▶ Run Now</button>
+          <button class="action-btn">⚙ Settings</button>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Resource Usage</h3>
+          <div class="resource-item">
+            <label>CPU</label>
+            <div class="resource-bar">
+              <div class="resource-fill" style="width: 45%;"></div>
+            </div>
+            <span class="resource-value">45%</span>
+          </div>
+          <div class="resource-item">
+            <label>Memory</label>
+            <div class="resource-bar">
+              <div class="resource-fill" style="width: 62%;"></div>
+            </div>
+            <span class="resource-value">62%</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="demo-footer">
+      <p>This is a UI/UX demonstration showcase. Not a live application.</p>
+      <a href="../../projects-design.html" class="footer-link">← Back to Design Works</a>
+    </footer>
+  </div>
+</body>
+</html>
