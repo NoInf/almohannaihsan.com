@@ -74,18 +74,18 @@
       }
 
       container.innerHTML = projectsWithDemos.map(project => `
-        <article class="card project-card design-card" data-project-id="${project.id}" onclick="window.open('${project.demoPath}', '_blank')">
+        <article class="card project-card" data-project-id="${project.id}">
           <div class="card-header">
             <h2>${project.name}</h2>
             <span class="demo-badge">✓ Demo Ready</span>
           </div>
           <p>${project.description}</p>
           <div class="project-meta">
-            ${project.tags.filter(tag => tag !== 'Public Repo' && tag !== 'Private').map(tag => `<span class="tag">${tag}</span>`).join('')}
+            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
           <div class="project-links">
-            <button class="btn btn-primary" onclick="event.stopPropagation(); window.open('${project.demoPath}', '_blank')">Show GUI</button>
-            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-secondary" onclick="event.stopPropagation()">Show GitHub</a>` : ''}
+            <button class="btn btn-primary" onclick="window.open('${project.demoPath}', '_blank')">Show GUI</button>
+            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-secondary">Show GitHub</a>` : ''}
           </div>
         </article>
       `).join('');
