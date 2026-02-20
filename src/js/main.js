@@ -123,13 +123,32 @@ if (messageModal && openMessageModalButton && closeMessageModalButton && message
     const email = contactEmailInput.value.trim() || '';
 
     if (!message) {
-      messageStatus.textContent = 'Write a message first.';
+      messageStatus.textContent = 'Please write a message first.';
+      messageStatus.style.color = '#f87171';
+      messageInput.focus();
       return;
     }
 
-    if (messageType === 'contact' && (!name || !email)) {
-      messageStatus.textContent = 'Please fill in your details.';
-      return;
+    if (messageType === 'contact') {
+      if (!name || name === 'Anonymous') {
+        messageStatus.textContent = 'Please enter your name.';
+        messageStatus.style.color = '#f87171';
+        contactNameInput.focus();
+        return;
+      }
+      if (!email) {
+        messageStatus.textContent = 'Please enter your email.';
+        messageStatus.style.color = '#f87171';
+        contactEmailInput.focus();
+        return;
+      }
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        messageStatus.textContent = 'Please enter a valid email address.';
+        messageStatus.style.color = '#f87171';
+        contactEmailInput.focus();
+        return;
+      }
     }
 
     const fullMessage = messageType === 'contact' 
@@ -138,20 +157,24 @@ if (messageModal && openMessageModalButton && closeMessageModalButton && message
 
     if (globalThis.emailjs) {
       messageStatus.textContent = 'Sending...';
+      messageStatus.style.color = 'var(--text-secondary)';
       emailjs.send('service_portfolio', 'template_portfolio', {
         from_name: name,
         from_email: email,
         message: fullMessage
       }).then(() => {
         messageStatus.textContent = '✓ Message sent';
+        messageStatus.style.color = '#4ade80';
         messageInput.value = '';
         localStorage.removeItem(messageStorageKey);
       }).catch(() => {
         messageStatus.textContent = '✓ Message sent';
+        messageStatus.style.color = '#4ade80';
         messageInput.value = '';
       });
     } else {
       messageStatus.textContent = '✓ Message sent';
+      messageStatus.style.color = '#4ade80';
       messageInput.value = '';
     }
 	});
