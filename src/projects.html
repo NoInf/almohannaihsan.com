@@ -54,8 +54,8 @@
             ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
           <div class="project-links">
-            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">Show GitHub</a>` : '<span class="btn btn-disabled">Private Repo</span>'}
             ${project.hasDemo ? `<button class="btn btn-secondary" onclick="window.open('${project.demoPath}', '_blank')">Show GUI</button>` : ''}
+            ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">Show GitHub</a>` : '<span class="btn btn-disabled">Private Repo</span>'}
           </div>
         </article>
       `).join('');
@@ -84,8 +84,8 @@
             ${project.tags.filter(tag => tag !== 'Public Repo' && tag !== 'Private').map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
           <div class="project-links">
-            <button class="btn btn-primary" onclick="event.stopPropagation(); window.open('${project.demoPath}', '_blank')">Show GUI</button>
             ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-secondary" onclick="event.stopPropagation()">Show GitHub</a>` : ''}
+            <button class="btn btn-primary" onclick="event.stopPropagation(); window.open('${project.demoPath}', '_blank')">Show GUI</button>
           </div>
         </article>
       `).join('');
