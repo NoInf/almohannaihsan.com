@@ -40,13 +40,6 @@ When ready to publish:
 4. In repo settings, enable GitHub Pages from `main` branch root
 5. Configure DNS for `almohannaihsan.com` to GitHub Pages
 
-## 📝 Documentation
-
-- [Project Guide](docs/PROJECT_GUIDE.md)
-- [Website Guide](docs/WEBSITE_GUIDE.md)
-- [Changelog](docs/CHANGELOG.md)
-- [Copilot Log](docs/COPILOT_LOG.md)
-
-## 📄 License
+##  License
 
 MIT
