@@ -66,6 +66,74 @@ body::before {
   margin-bottom: 2rem;
 }
 
+.demo-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4.5rem;
+  margin-bottom: 1.75rem;
+  padding: 0 0 1.25rem;
+  position: relative;
+}
+
+.demo-tabs::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 1px;
+  width: min(620px, 90%);
+  background: linear-gradient(90deg, transparent, rgba(72, 79, 88, 0.6), transparent);
+}
+
+.demo-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.6rem 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.demo-tab.active {
+  color: var(--text-primary);
+}
+
+.demo-tab::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -1.25rem;
+  width: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.65), transparent);
+  opacity: 0;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+
+.demo-tab:hover {
+  color: var(--text-primary);
+}
+
+.demo-tab:hover::after {
+  width: 160px;
+  opacity: 0.55;
+}
+
+.demo-tab.active::after {
+  width: 220px;
+  opacity: 1;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.95), transparent);
+  box-shadow: 0 0 14px rgba(244, 162, 97, 0.45);
+}
+
 .header-content h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;

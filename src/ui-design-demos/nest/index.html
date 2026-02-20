@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nest - Automation Bot Framework UI Demo">
+  <meta name="description" content="Nest - Project dashboard UI demo">
   <title>Nest UI Demo | Ihsan Almohanna</title>
   <link rel="stylesheet" href="css/demo.css">
 </head>
 <body>
   <div class="demo-container">
+    <div class="demo-tabs" id="demo-tabs" role="tablist" aria-label="Demo versions"></div>
+
     <header class="demo-header">
       <div class="header-content">
         <h1>Nest</h1>
-        <p>Automation Bot Framework</p>
+        <p>Project dashboard for instant access</p>
       </div>
       <div class="header-stats">
         <div class="stat">
@@ -78,17 +80,18 @@
 
           <div class="task-item active">
             <div class="task-header">
-              <h3>AI Integration</h3>
+              <h3>Workspace Snapshot</h3>
               <span class="badge running">● Running</span>
             </div>
-            <p class="task-description">Connect multiple AI models for smart routing</p>
+            <p class="task-description">Capture the latest project status and quick links</p>
             <div class="task-progress">
               <div class="progress-bar">
-                <div class="progress-fill" style="width: 42%;"></div>
+                <div class="progress-fill" style="width: 58%;"></div>
               </div>
-              <span class="progress-text">42% complete</span>
+              <span class="progress-text">58% complete</span>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -134,5 +137,17 @@
       <a href="../../projects-design.html" class="footer-link">← Back to Design Works</a>
     </footer>
   </div>
+
+  <script>
+    const demoVersionIds = ['1'];
+    const demoTabs = document.getElementById('demo-tabs');
+
+    if (demoTabs) {
+      demoTabs.innerHTML = demoVersionIds.map((versionId, index) => {
+        const label = `Version ${versionId}`;
+        return `<button class="demo-tab${index === 0 ? ' active' : ''}" type="button" role="tab" aria-selected="${index === 0}">${label}</button>`;
+      }).join('');
+    }
+  </script>
 </body>
 </html>

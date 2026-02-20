@@ -68,12 +68,12 @@ const contactNameInput = document.getElementById('contact-name');
 const contactEmailInput = document.getElementById('contact-email');
 const messageStorageKey = 'portfolioMessage';
 
-// Initialize EmailJS
-(function() {
+// Initialize EmailJS if available
+if (globalThis.emailjs) {
   emailjs.init({
     publicKey: 'gNfPPcFc0ZFbhZW3P'
   });
-})();
+}
 
 // Ensure modal is closed on page load
 if (messageModal) {

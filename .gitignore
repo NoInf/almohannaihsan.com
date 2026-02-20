@@ -33,3 +33,7 @@ npm-debug.log*
 # Cache
 .cache/
 *.cache
+
+# Documentation (local only, not committed)
+docs/
+.github/copilot-instructions.md

@@ -31,6 +31,13 @@ body {
   padding: 2rem 0;
 }
 
+body.home-page {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 body::before {
   content: '';
   position: fixed;
@@ -59,13 +66,11 @@ main {
 }
 
 .home-page main {
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 
 .home-shell {
   width: min(980px, 94vw);
-  min-height: calc(100vh - 4rem);
   margin: 0 auto;
   display: block;
 }
@@ -259,6 +264,36 @@ main {
 
 .link-tile p {
   color: var(--text-secondary);
+}
+
+.page-footer-actions {
+  width: min(1100px, 92%);
+  margin: 3rem auto 1.5rem;
+  padding-top: 1.75rem;
+  text-align: center;
+  position: relative;
+}
+
+.page-footer-actions::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 1px;
+  width: min(920px, 92%);
+  background: linear-gradient(90deg, transparent, rgba(72, 79, 88, 0.65), transparent);
+}
+
+.back-link {
+  color: var(--accent-orange);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #ffc78f;
 }
 
 .link-tile:hover h3 {
@@ -461,6 +496,18 @@ main {
   filter: brightness(1.08);
   box-shadow: 0 0 18px var(--glow-color);
   transform: translateY(-1px);
+}
+
+.btn-github {
+  background: #0d1117;
+  border-color: var(--border-color);
+  color: #ffffff;
+}
+
+.btn-github:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #0d1117;
 }
 
 .section {
@@ -766,17 +813,29 @@ main {
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+
+.view-tabs::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: min(860px, 92%);
+  background: linear-gradient(90deg, rgba(72, 79, 88, 0.65), transparent);
 }
 
 .tab-link {
+  border: none;
+  background: transparent;
   padding: 0.75rem 1rem;
   color: var(--text-secondary);
-  border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
   position: relative;
   bottom: -1px;
+  cursor: pointer;
 }
 
 .tab-link:hover {
@@ -785,7 +844,39 @@ main {
 
 .tab-link.active {
   color: var(--accent-orange);
-  border-bottom-color: var(--accent-orange);
+}
+
+.tab-underline {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 120px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.95), transparent);
+  box-shadow: 0 0 10px rgba(244, 162, 97, 0.45);
+  transition: transform 0.3s ease, width 0.3s ease;
+  pointer-events: none;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+.tab-link.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -1px;
+  width: 120px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.95), transparent);
+  box-shadow: 0 0 10px rgba(244, 162, 97, 0.45);
 }
 
 .project-card {

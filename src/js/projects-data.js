@@ -7,22 +7,12 @@ const PROJECTS = [
   {
     id: "nest",
     name: "Nest",
-    description: "Automation bot framework for task scheduling and AI integration",
-    tags: ["JavaScript", "Automation", "Public Repo"],
+    description: "Project dashboard for fast access to every part of any project.",
+    tags: ["JavaScript", "Dashboard", "Public Repo"],
     isPublic: true,
-    repoUrl: "https://github.com/NoInf/tiny-nest",
+    repoUrl: "https://github.com/NoInf/nest",
     hasDemo: true,
     demoPath: "./ui-design-demos/nest/"
-  },
-  {
-    id: "ai-controller",
-    name: "AI Controller",
-    description: "Unified endpoint manager for multiple AI models",
-    tags: ["JavaScript", "AI", "Private"],
-    isPublic: false,
-    repoUrl: null,
-    hasDemo: false,
-    demoPath: null
   }
 ];
 
