@@ -508,6 +508,14 @@ main {
   background-color: rgba(88, 166, 255, 0.15);
 }
 
+.btn-borderless {
+  border-color: transparent;
+}
+
+.btn-borderless:hover {
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
 .section {
   padding: 2rem 0 3rem;
 }
