@@ -54,8 +54,8 @@
             ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
           <div class="project-links">
-            ${project.hasDemo ? `<button class="btn btn-secondary btn-borderless" onclick="window.open('${project.demoPath}', '_blank')">Show GUI</button>` : ''}
             ${project.isPublic ? `<a href="${project.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">Show GitHub</a>` : '<span class="btn btn-disabled">Private Repo</span>'}
+            ${project.hasDemo ? `<button class="btn btn-secondary" onclick="window.open('${project.demoPath}', '_blank')">Show GUI</button>` : ''}
           </div>
         </article>
       `).join('');
