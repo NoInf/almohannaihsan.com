@@ -498,16 +498,14 @@ main {
   transform: translateY(-1px);
 }
 
-.btn-github {
-  background: #0d1117;
-  border-color: var(--border-color);
-  color: #ffffff;
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
 }
 
-.btn-github:hover {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #0d1117;
+.btn-secondary:hover {
+  background-color: rgba(88, 166, 255, 0.15);
 }
 
 .section {
@@ -929,14 +927,9 @@ main {
   color: var(--accent-blue);
 }
 
-.btn-secondary {
-  background-color: transparent;
-  color: var(--accent-blue);
-  border-color: var(--accent-blue);
-}
-
-.btn-secondary:hover {
-  background-color: rgba(88, 166, 255, 0.15);
+.design-card .project-links {
+  justify-content: flex-start;
+  margin-top: 1rem;
 }
 
 .btn-disabled {
