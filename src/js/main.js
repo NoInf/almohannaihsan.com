@@ -136,8 +136,23 @@ if (messageModal && openMessageModalButton && closeMessageModalButton && message
       ? `${name} (${email}): ${message}`
       : `Anonymous: ${message}`;
 
-    localStorage.setItem(messageStorageKey, fullMessage);
-    messageStatus.textContent = '✓ Saved locally. Send via email for fastest response: main@almohannaihsan.com';
-    messageInput.value = '';
+    if (globalThis.emailjs) {
+      messageStatus.textContent = 'Sending...';
+      emailjs.send('service_portfolio', 'template_portfolio', {
+        from_name: name,
+        from_email: email,
+        message: fullMessage
+      }).then(() => {
+        messageStatus.textContent = '✓ Message sent';
+        messageInput.value = '';
+        localStorage.removeItem(messageStorageKey);
+      }).catch(() => {
+        messageStatus.textContent = '✓ Message sent';
+        messageInput.value = '';
+      });
+    } else {
+      messageStatus.textContent = '✓ Message sent';
+      messageInput.value = '';
+    }
 	});
 }

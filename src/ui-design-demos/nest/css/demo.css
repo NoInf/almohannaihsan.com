@@ -102,36 +102,32 @@ body::before {
 
 .demo-tab.active {
   color: var(--text-primary);
+  text-shadow: 0 0 12px rgba(244, 162, 97, 0.6), 0 0 24px rgba(244, 162, 97, 0.25);
+}
+
+.demo-tab-underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 120px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.95), transparent);
+  box-shadow: 0 0 12px rgba(244, 162, 97, 0.5), 0 0 24px rgba(244, 162, 97, 0.2);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .demo-tab::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -1.25rem;
-  width: 0;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.65), transparent);
-  opacity: 0;
-  transition: width 0.2s ease, opacity 0.2s ease;
+  display: none;
 }
 
 .demo-tab:hover {
   color: var(--text-primary);
 }
 
-.demo-tab:hover::after {
-  width: 160px;
-  opacity: 0.55;
-}
-
 .demo-tab.active::after {
-  width: 220px;
-  opacity: 1;
-  background: linear-gradient(90deg, transparent, rgba(244, 162, 97, 0.95), transparent);
-  box-shadow: 0 0 14px rgba(244, 162, 97, 0.45);
+  display: none;
 }
 
 .header-content h1 {

@@ -381,6 +381,10 @@ main {
   width: min(460px, 96vw);
 }
 
+.message-modal-content h3 {
+  color: #ffffff;
+}
+
 .message-type-row {
   display: flex;
   flex-direction: column;
