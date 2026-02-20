@@ -420,10 +420,15 @@ body::before {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;
+    padding: 1.25rem;
   }
 
   .header-content h1 {
     font-size: 1.8rem;
+  }
+
+  .header-content p {
+    font-size: 0.95rem;
   }
 
   .header-stats {
@@ -431,8 +436,30 @@ body::before {
     justify-content: space-around;
   }
 
+  .stat {
+    padding: 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .demo-tabs {
+    gap: 2rem;
+    padding: 0 0 1rem;
+  }
+
+  .demo-tab {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.3rem;
+  }
+
   .demo-main {
     grid-template-columns: 1fr;
+  }
+
+  .task-item {
+    padding: 1rem;
   }
 
   .task-header {
@@ -440,7 +467,103 @@ body::before {
     align-items: flex-start;
   }
 
+  .task-header h3 {
+    font-size: 1rem;
+  }
+
   .badge {
     align-self: flex-start;
+  }
+
+  .task-description {
+    font-size: 0.88rem;
+  }
+
+  .demo-sidebar {
+    gap: 1rem;
+  }
+
+  .sidebar-card {
+    padding: 1rem;
+  }
+
+  .demo-footer {
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* ========== SMALL SCREENS (480px) ========== */
+@media (max-width: 480px) {
+  .demo-container {
+    padding: 0.75rem;
+  }
+
+  .demo-header {
+    padding: 1rem;
+  }
+
+  .header-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .header-content p {
+    font-size: 0.85rem;
+  }
+
+  .header-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stat {
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+
+  .demo-tabs {
+    gap: 1.25rem;
+    padding: 0 0 0.75rem;
+  }
+
+  .demo-tab {
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tasks-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .task-item {
+    padding: 0.85rem;
+  }
+
+  .task-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .badge {
+    font-size: 0.68rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .sidebar-card {
+    padding: 0.85rem;
+  }
+
+  .sidebar-card h3 {
+    font-size: 0.85rem;
+  }
+
+  .action-btn {
+    font-size: 0.82rem;
+    padding: 0.6rem;
   }
 }

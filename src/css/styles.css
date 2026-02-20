@@ -817,6 +817,229 @@ main {
   .time-line {
     font-size: 1.7rem;
   }
+
+  /* ===== MESSAGE MODAL MOBILE ===== */
+  .message-modal-content {
+    width: min(400px, 92vw);
+    padding: 0.85rem;
+  }
+
+  .message-form textarea {
+    min-height: 100px;
+  }
+
+  .message-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .message-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  #contact-fields input {
+    width: 100%;
+  }
+
+  /* ===== PROJECTS PAGE MOBILE ===== */
+  .page-hero {
+    padding: 2.5rem 0 1rem;
+  }
+
+  .page-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .page-hero p {
+    font-size: 0.9rem;
+  }
+
+  .view-tabs {
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .tab-link {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    gap: 0.75rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.15rem;
+  }
+
+  .project-meta {
+    gap: 0.35rem;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-links .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 1rem;
+  }
+
+  .page-footer-actions {
+    margin: 2rem auto 1rem;
+    padding-top: 1.25rem;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+  }
+
+  /* ===== BUTTONS MOBILE ===== */
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  /* ===== ABOUT GRID MOBILE ===== */
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .section-head h2 {
+    font-size: 1.2rem;
+  }
+
+  /* ===== FOOTER MOBILE ===== */
+  .footer-wrap {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* ========== SMALL SCREENS (480px) ========== */
+@media (max-width: 480px) {
+  body {
+    padding: 0.35rem 0 0.75rem;
+  }
+
+  body::before {
+    background-size: 32px 32px;
+  }
+
+  .home-shell {
+    width: 98vw;
+  }
+
+  .container {
+    width: 94%;
+  }
+
+  .intro-tile h1 {
+    font-size: 1.2rem;
+  }
+
+  .hero-copy {
+    font-size: 0.88rem;
+  }
+
+  .profile-icon-block {
+    height: 100px;
+  }
+
+  .about-tile h2 {
+    font-size: 1.1rem;
+  }
+
+  .about-tile p {
+    font-size: 0.88rem;
+  }
+
+  .time-line {
+    font-size: 1.4rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  .card {
+    padding: 0.85rem;
+  }
+
+  .tile {
+    min-height: 90px;
+  }
+
+  /* Projects page small screen */
+  .page-hero {
+    padding: 1.8rem 0 0.75rem;
+  }
+
+  .page-hero h1 {
+    font-size: 1.35rem;
+  }
+
+  .view-tabs {
+    gap: 0.25rem;
+  }
+
+  .tab-link {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.82rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 0.12rem 0.45rem;
+  }
+
+  .status-badge,
+  .demo-badge {
+    font-size: 0.68rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .message-modal-content {
+    width: 96vw;
+    padding: 0.75rem;
+  }
+
+  .message-modal-content h3 {
+    font-size: 1.05rem;
+  }
+
+  .message-type-row label {
+    font-size: 0.88rem;
+  }
+
+  .message-form input,
+  .message-form textarea {
+    font-size: 0.88rem;
+    padding: 0.6rem;
+  }
 }
 
 /* ========== PROJECTS PAGE STYLES ========== */
@@ -875,9 +1098,6 @@ main {
 .tab-underline.ready {
   opacity: 1;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
 }
 
 .tab-panel {
