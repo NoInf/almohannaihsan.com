@@ -694,14 +694,6 @@ main {
   gap: 0.8rem;
 }
 
-.project-links a {
-  color: var(--accent-blue);
-}
-
-.project-links a:hover {
-  text-decoration: underline;
-}
-
 .project-placeholder {
   border-style: dashed;
 }
