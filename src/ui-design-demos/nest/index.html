@@ -167,7 +167,13 @@
         });
       });
 
-      requestAnimationFrame(positionDemoUnderline);
+      requestAnimationFrame(() => {
+        positionDemoUnderline();
+        const underline = demoTabs.querySelector('.demo-tab-underline');
+        if (underline) {
+          requestAnimationFrame(() => underline.classList.add('ready'));
+        }
+      });
       window.addEventListener('resize', positionDemoUnderline);
     }
   </script>

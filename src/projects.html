@@ -129,6 +129,17 @@
       renderDesignWorksView();
       setActiveTab('repos');
 
+      // Position underline instantly (no transition) then enable transitions
+      const underline = document.querySelector('.tab-underline');
+      if (underline) {
+        requestAnimationFrame(() => {
+          positionUnderline();
+          requestAnimationFrame(() => {
+            underline.classList.add('ready');
+          });
+        });
+      }
+
       const tabs = document.querySelectorAll('.view-tabs .tab-link');
       tabs.forEach((tab) => {
         tab.addEventListener('click', () => setActiveTab(tab.dataset.view));
