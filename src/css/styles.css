@@ -791,16 +791,14 @@ main {
   }
 
   .dashboard-grid-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      'intro'
-      'about'
-      'contact'
-      'time'
-      'design'
-      'now'
-      'message'
-      'projects';
+      'intro intro'
+      'about about'
+      'contact contact'
+      'time design'
+      'now now'
+      'message projects';
   }
 
   .intro-tile {
@@ -810,7 +808,7 @@ main {
   .profile-icon-block {
     position: static;
     margin-top: 1rem;
-    width: 100%;
+    width: 120px;
     height: 120px;
   }
 
@@ -962,6 +960,7 @@ main {
   }
 
   .profile-icon-block {
+    width: 100px;
     height: 100px;
   }
 
