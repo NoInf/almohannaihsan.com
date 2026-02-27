@@ -423,22 +423,17 @@
         if (action === 'folder') {
           const project = button.dataset.project || 'Project';
           const folder = button.dataset.folder || 'Unknown path';
-          const folderUrl = toWorkspaceUrl(folder);
 
           if (folderPreviewText) {
             folderPreviewText.textContent = '';
-            const folderLink = document.createElement('a');
+            const folderLink = document.createElement('span');
             folderLink.className = 'folder-link';
-            folderLink.href = folderUrl;
-            folderLink.target = '_blank';
-            folderLink.rel = 'noopener noreferrer';
             folderLink.textContent = `${project} → ${folder}`;
             folderPreviewText.appendChild(folderLink);
           }
 
-          globalThis.open(folderUrl, '_blank', 'noopener');
           setWorkspaceView('projects');
-          showToast(`Folder opened for ${project}`);
+          showToast(`Folder: ${folder}`);
           return;
         }
 
