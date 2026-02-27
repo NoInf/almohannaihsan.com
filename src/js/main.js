@@ -115,6 +115,15 @@ if (messageModal && openMessageModalButton && closeMessageModalButton && message
     messageInput.value = savedMessage;
   }
 
+  messageInput.addEventListener('input', () => {
+    const draft = messageInput.value.trim();
+    if (draft) {
+      localStorage.setItem(messageStorageKey, draft);
+    } else {
+      localStorage.removeItem(messageStorageKey);
+    }
+  });
+
   messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = messageInput.value.trim();
@@ -166,16 +175,17 @@ if (messageModal && openMessageModalButton && closeMessageModalButton && message
         messageStatus.textContent = '✓ Message sent';
         messageStatus.style.color = '#4ade80';
         messageInput.value = '';
+        contactNameInput.value = '';
+        contactEmailInput.value = '';
         localStorage.removeItem(messageStorageKey);
-      }).catch(() => {
-        messageStatus.textContent = '✓ Message sent';
-        messageStatus.style.color = '#4ade80';
-        messageInput.value = '';
+      }).catch((error) => {
+        console.error('EmailJS send failed:', error);
+        messageStatus.textContent = 'Could not send right now. Please email me instead at main@almohannaihsan.com';
+        messageStatus.style.color = '#f87171';
       });
     } else {
-      messageStatus.textContent = '✓ Message sent';
-      messageStatus.style.color = '#4ade80';
-      messageInput.value = '';
+      messageStatus.textContent = 'Message service unavailable. Please email me instead at main@almohannaihsan.com';
+      messageStatus.style.color = '#f87171';
     }
 	});
 }

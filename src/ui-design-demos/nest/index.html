@@ -134,18 +134,38 @@
 
     <footer class="demo-footer">
       <p>This is a UI/UX demonstration showcase. Not a live application.</p>
-      <a href="../../projects-design.html" class="footer-link">← Back to Design Works</a>
+      <a href="../../projects.html" class="footer-link">← Back to Projects</a>
     </footer>
   </div>
 
   <script>
-    const demoVersionIds = ['1'];
+    const demoVersions = [
+      { id: '1', href: '../nest/' },
+      { id: '2', href: '../nest-v2/' }
+    ];
     const demoTabs = document.getElementById('demo-tabs');
 
+    requestAnimationFrame(() => {
+      document.body.classList.add('page-ready');
+    });
+
+    function navigateWithTransition(targetHref) {
+      if (!targetHref) return;
+      const currentPath = window.location.pathname.replace(/\/+$/, '');
+      const normalizedTarget = new URL(targetHref, window.location.href).pathname.replace(/\/+$/, '');
+      if (currentPath === normalizedTarget) return;
+      document.body.classList.add('page-exit');
+      setTimeout(() => {
+        window.location.href = targetHref;
+      }, 220);
+    }
+
     if (demoTabs) {
-      demoTabs.innerHTML = demoVersionIds.map((versionId, index) => {
-        const label = `Version ${versionId}`;
-        return `<button class="demo-tab${index === 0 ? ' active' : ''}" type="button" role="tab" aria-selected="${index === 0}">${label}</button>`;
+      const isV2Page = window.location.pathname.includes('/nest-v2/');
+
+      demoTabs.innerHTML = demoVersions.map((version, index) => {
+        const isActive = isV2Page ? version.id === '2' : version.id === '1';
+        return `<button class="demo-tab${isActive ? ' active' : ''}" type="button" role="tab" data-href="${version.href}" aria-selected="${isActive}" aria-label="Open Version ${version.id}">Version ${version.id}</button>`;
       }).join('') + '<span class="demo-tab-underline" aria-hidden="true"></span>';
 
       function positionDemoUnderline() {
@@ -161,9 +181,8 @@
 
       demoTabs.querySelectorAll('.demo-tab').forEach(tab => {
         tab.addEventListener('click', () => {
-          demoTabs.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          positionDemoUnderline();
+          const targetHref = tab.dataset.href;
+          navigateWithTransition(targetHref);
         });
       });
 

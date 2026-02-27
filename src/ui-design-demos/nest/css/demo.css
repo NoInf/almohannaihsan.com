@@ -29,6 +29,16 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+body.page-ready {
+  opacity: 1;
+}
+
+body.page-exit {
+  opacity: 0;
 }
 
 body::before {

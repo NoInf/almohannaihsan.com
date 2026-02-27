@@ -13,9 +13,9 @@
       <p class="eyebrow">Selected Work</p>
       <h1>Projects</h1>
       <p>Repository listing of all projects. View code, documentation, and more on GitHub.</p>
-      <div class="view-tabs" id="projects-tabs">
-        <button class="tab-link active" type="button" data-view="repos" aria-selected="true">Repositories</button>
-        <button class="tab-link" type="button" data-view="design" aria-selected="false">Design Works</button>
+      <div class="view-tabs" id="projects-tabs" role="tablist" aria-label="Project views">
+        <button class="tab-link active" role="tab" type="button" data-view="repos" aria-selected="true">Repositories</button>
+        <button class="tab-link" role="tab" type="button" data-view="design" aria-selected="false">Design Works</button>
         <span class="tab-underline" aria-hidden="true"></span>
       </div>
     </section>
@@ -36,12 +36,14 @@
   <script src="js/projects-data.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // Render all projects for Repositories view
+    // Render all non-design-only projects for Repositories view
     function renderRepositoriesView() {
       const container = document.getElementById('projects-container');
       if (!container) return;
 
-      container.innerHTML = PROJECTS.map(project => `
+      const repositoryProjects = PROJECTS.filter(project => !project.isDesignOnly);
+
+      container.innerHTML = repositoryProjects.map(project => `
         <article class="card project-card" data-project-id="${project.id}">
           <div class="card-header">
             <h2>${project.name}</h2>
@@ -61,12 +63,12 @@
       `).join('');
     }
 
-    // Render only projects with demos for Design Works view
+    // Render projects with demos, excluding design-only variants
     function renderDesignWorksView() {
       const container = document.getElementById('designs-container');
       if (!container) return;
 
-      const projectsWithDemos = PROJECTS.filter(project => project.hasDemo);
+      const projectsWithDemos = PROJECTS.filter(project => project.hasDemo && !project.isDesignOnly);
 
       if (projectsWithDemos.length === 0) {
         container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No design demos available yet.</p>';
@@ -123,11 +125,29 @@
       underline.style.transform = `translateX(${offset}px) translateX(-50%)`;
     }
 
+    function getInitialView() {
+      const params = new URLSearchParams(globalThis.location.search);
+      const requested = params.get('view');
+      return requested === 'design' ? 'design' : 'repos';
+    }
+
+    function syncViewInUrl(view) {
+      const url = new URL(globalThis.location.href);
+      if (view === 'design') {
+        url.searchParams.set('view', 'design');
+      } else {
+        url.searchParams.delete('view');
+      }
+      globalThis.history.replaceState({}, '', url);
+    }
+
     // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
       renderRepositoriesView();
       renderDesignWorksView();
-      setActiveTab('repos');
+      const initialView = getInitialView();
+      setActiveTab(initialView);
+      syncViewInUrl(initialView);
 
       // Position underline instantly (no transition) then enable transitions
       const underline = document.querySelector('.tab-underline');
@@ -142,10 +162,14 @@
 
       const tabs = document.querySelectorAll('.view-tabs .tab-link');
       tabs.forEach((tab) => {
-        tab.addEventListener('click', () => setActiveTab(tab.dataset.view));
+        tab.addEventListener('click', () => {
+          const nextView = tab.dataset.view;
+          setActiveTab(nextView);
+          syncViewInUrl(nextView);
+        });
       });
 
-      window.addEventListener('resize', positionUnderline);
+      globalThis.addEventListener('resize', positionUnderline);
     });
   </script>
 </body>
