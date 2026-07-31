@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nest UI Demo v3 - a desktop workspace shell template built on the real v3 design tokens.">
+  <title>Nest UI Demo v3 | Ihsan Almohanna</title>
+  <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+  <div class="demo-shell">
+    <div class="demo-tabs" id="demo-tabs" role="tablist" aria-label="Demo versions"></div>
+
+    <header class="demo-intro">
+      <h1>Nest <span class="demo-version-pill">v3.1.0</span></h1>
+      <p>
+        A desktop workspace shell: tabbed window chrome, resizable explorer, live dashboards,
+        and eight themes driven entirely by design tokens. All content below is placeholder.
+        Try the theme picker in <strong>Settings</strong>, or press <kbd>Ctrl</kbd> + <kbd>K</kbd>
+        for the command palette.
+      </p>
+    </header>
+
+    <!-- ============================================================
+         The application window. Everything inside mirrors the real
+         Nest v3 shell: 32px titlebar, 220px sidebar, 24px status bar.
+         ============================================================ -->
+    <div class="nest-window" id="nest-window">
+
+      <!-- ---------- Title bar: brand | tabs | window controls ---------- -->
+      <div class="nest-titlebar">
+        <span class="titlebar-brand">Nest</span>
+
+        <nav class="tab-bar" id="tab-bar" role="tablist" aria-label="Open tabs">
+          <div class="tab-group-pinned">
+            <button class="tab pinned active" type="button" role="tab" aria-selected="true" data-tab="home" title="Home">
+              <span class="tab-icon">H</span><span class="tab-label">Home</span>
+            </button>
+            <button class="tab pinned" type="button" role="tab" aria-selected="false" data-tab="pc-stats" title="PC Stats">
+              <span class="tab-icon">P</span><span class="tab-label">PC Stats</span>
+            </button>
+            <button class="tab pinned" type="button" role="tab" aria-selected="false" data-tab="todos" title="TODOs">
+              <span class="tab-icon">T</span><span class="tab-label">TODOs</span>
+            </button>
+            <button class="tab pinned" type="button" role="tab" aria-selected="false" data-tab="idea-hub" title="Idea Hub">
+              <span class="tab-icon">I</span><span class="tab-label">Idea Hub</span>
+            </button>
+            <button class="tab pinned" type="button" role="tab" aria-selected="false" data-tab="active-processes" title="Active Processes">
+              <span class="tab-icon">A</span><span class="tab-label">Active Processes</span>
+            </button>
+            <button class="tab pinned" type="button" role="tab" aria-selected="false" data-tab="active-terminals" title="Active Terminals">
+              <span class="tab-icon">L</span><span class="tab-label">Active Terminals</span>
+            </button>
+          </div>
+
+          <div class="tab-group-scroll">
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="dev" title="Dev">
+              <span class="tab-icon">&#8984;</span><span class="tab-label">Dev</span>
+              <span class="tab-close" role="presentation" title="Close tab">&#10005;</span>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="logs" title="Logs">
+              <span class="tab-icon">~</span><span class="tab-label">Logs</span>
+              <span class="tab-badge visible" aria-hidden="true"></span>
+              <span class="tab-close" role="presentation" title="Close tab">&#10005;</span>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-tab="settings" title="Settings">
+              <span class="tab-icon">S</span><span class="tab-label">Settings</span>
+              <span class="tab-close" role="presentation" title="Close tab">&#10005;</span>
+            </button>
+            <button class="tab-launcher-plus" id="tab-launcher" type="button" title="Open a new tab" aria-haspopup="menu" aria-expanded="false">+</button>
+          </div>
+        </nav>
+
+        <div class="titlebar-drag-spacer"></div>
+        <div class="titlebar-controls">
+          <button class="titlebar-btn" type="button" title="Minimize" data-demo-action="Minimize">&#x2013;</button>
+          <button class="titlebar-btn" type="button" title="Maximize" data-demo-action="Maximize">&#x25A1;</button>
+          <button class="titlebar-btn titlebar-btn--close" type="button" title="Close" data-demo-action="Close">&#10005;</button>
+        </div>
+      </div>
+
+      <!-- ---------- App body: sidebar | resizer | main ---------- -->
+      <div class="nest-app" id="nest-app">
+
+        <aside class="nest-sidebar" id="nest-sidebar">
+          <div class="sidebar-section">
+            <span class="sidebar-section-label">Sync Roots</span>
+            <div class="tree-row"><span class="tree-chevron">&#9656;</span><span class="tree-icon">&#9671;</span><span class="tree-name">library</span></div>
+            <div class="tree-row"><span class="tree-chevron">&#9656;</span><span class="tree-icon">&#9671;</span><span class="tree-name">shared</span></div>
+            <div class="tree-row"><span class="tree-chevron">&#9656;</span><span class="tree-icon">&#9671;</span><span class="tree-name">tools</span></div>
+          </div>
+
+          <div class="sidebar-section sidebar-explorer">
+            <span class="sidebar-section-label">Workspace</span>
+            <div class="file-tree" id="file-tree"></div>
+          </div>
+        </aside>
+
+        <div class="nest-resizer" id="nest-resizer" role="separator" aria-orientation="vertical" aria-label="Resize sidebar" tabindex="0"></div>
+
+        <main class="nest-main">
+          <div class="nest-panels" id="nest-panels">
+
+            <!-- ================= HOME ================= -->
+            <section class="tab-panel active" data-panel="home" aria-label="Home">
+              <div class="home-wrapper">
+                <div class="home-dashboard">
+                  <div class="home-clock" id="home-clock">
+                    <span class="home-time">--:--:--</span>
+                    <span class="home-date">Loading</span>
+                  </div>
+                  <div class="home-heartbeat">
+                    <span class="home-hb-dot"></span>
+                    <span id="home-heartbeat-label"></span>
+                  </div>
+                </div>
+
+                <div class="home-quick-actions">
+                  <button class="home-qa-btn" type="button" data-demo-action="Notes">&#9998; Notes</button>
+                  <button class="home-qa-btn" type="button" data-open-tab="todos">&#10003; TODOs</button>
+                  <button class="home-qa-btn" type="button" data-demo-action="Terminal">&#8250;_ Terminal</button>
+                  <button class="home-qa-btn" type="button" data-demo-action="New Project">&#65291; Project</button>
+                  <button class="home-qa-btn" type="button" id="hqa-palette">&#8984; Palette</button>
+                  <button class="home-qa-btn" type="button" id="hqa-search">&#9906; Search</button>
+                </div>
+
+                <div class="home-todos-summary">
+                  <div class="home-section-title">Today</div>
+                  <ul class="home-todo-list">
+                    <li><span class="todo-box"></span><span class="todo-text">Sample task pulled from the task files</span><span class="todo-proj">Crab Controller</span></li>
+                    <li><span class="todo-box"></span><span class="todo-text">Placeholder item for the template</span><span class="todo-proj">Glue Factory</span></li>
+                    <li><span class="todo-box"></span><span class="todo-text">Example entry, replace with real work</span><span class="todo-proj">Averardo Bank</span></li>
+                  </ul>
+                </div>
+
+                <div class="home-section-title">Projects</div>
+                <div class="project-grid" id="home-project-grid"></div>
+              </div>
+            </section>
+
+            <!-- ================= PC STATS ================= -->
+            <section class="tab-panel" data-panel="pc-stats" aria-label="PC Stats">
+              <div class="stats-grid">
+                <article class="stat-card">
+                  <header class="stat-card-head"><span>CPU</span><span class="stat-card-val" id="cpu-val">37%</span></header>
+                  <div class="sparkline" id="cpu-spark" aria-hidden="true"></div>
+                  <div class="core-list" id="core-list"></div>
+                </article>
+
+                <article class="stat-card">
+                  <header class="stat-card-head"><span>Memory</span><span class="stat-card-val" id="ram-val">61%</span></header>
+                  <div class="sparkline" id="ram-spark" aria-hidden="true"></div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">RAM</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:61%;background:var(--status-yellow)"></div></div>
+                    <span class="bar-val">19.5 / 32.0 GB</span>
+                  </div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">Swap</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--status-green)"></div></div>
+                    <span class="bar-val">2.6 / 18.0 GB</span>
+                  </div>
+                </article>
+
+                <article class="stat-card">
+                  <header class="stat-card-head"><span>Disks</span><span class="stat-card-val">2 mounted</span></header>
+                  <div class="bar-row">
+                    <span class="bar-lbl">C: <em class="disk-kind">SSD</em></span>
+                    <div class="bar-track"><div class="bar-fill" style="width:64%;background:var(--status-yellow)"></div></div>
+                    <span class="bar-val">182 GB free</span>
+                  </div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">E: <em class="disk-kind">HDD</em></span>
+                    <div class="bar-track"><div class="bar-fill" style="width:31%;background:var(--status-green)"></div></div>
+                    <span class="bar-val">1.4 TB free</span>
+                  </div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">Uptime</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:48%;background:var(--accent)"></div></div>
+                    <span class="bar-val">2d 11h 04m</span>
+                  </div>
+                </article>
+
+                <article class="stat-card">
+                  <header class="stat-card-head"><span>GPU</span><span class="stat-card-val">Discrete</span></header>
+                  <div class="bar-row">
+                    <span class="bar-lbl">Usage</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--status-green)"></div></div>
+                    <span class="bar-val">22%</span>
+                  </div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">VRAM</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--status-green)"></div></div>
+                    <span class="bar-val">6.6 / 16.0 GB</span>
+                  </div>
+                  <div class="bar-row">
+                    <span class="bar-lbl">Temp</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:52%;background:var(--status-yellow)"></div></div>
+                    <span class="bar-val">61 &deg;C</span>
+                  </div>
+                </article>
+
+                <article class="stat-card">
+                  <header class="stat-card-head"><span>Network</span><span class="stat-card-val">Ethernet</span></header>
+                  <div class="net-row"><span class="net-name">Ethernet</span><span class="net-rx">&darr; 4.1 MB/s</span><span class="net-tx">&uarr; 620 KB/s</span></div>
+                  <div class="net-row"><span class="net-name">Wi-Fi</span><span class="net-rx">&darr; 0 B/s</span><span class="net-tx">&uarr; 0 B/s</span></div>
+                  <div class="sparkline" id="net-spark" aria-hidden="true"></div>
+                </article>
+
+                <article class="stat-card stat-card-wide">
+                  <header class="stat-card-head"><span>Top Processes</span><span class="stat-card-val">by CPU</span></header>
+                  <div class="proc-table">
+                    <div class="proc-thead"><span>Name</span><span>CPU</span><span>RAM</span><span>PID</span></div>
+                    <div class="proc-trow"><span class="proc-name">app.exe</span><span>8.4%</span><span>412 MB</span><span class="proc-pid">21184</span></div>
+                    <div class="proc-trow"><span class="proc-name">node.exe</span><span>6.1%</span><span>388 MB</span><span class="proc-pid">9012</span></div>
+                    <div class="proc-trow"><span class="proc-name">editor.exe</span><span>4.9%</span><span>1.2 GB</span><span class="proc-pid">14760</span></div>
+                    <div class="proc-trow"><span class="proc-name">python.exe</span><span>3.2%</span><span>296 MB</span><span class="proc-pid">6644</span></div>
+                    <div class="proc-trow"><span class="proc-name">service.exe</span><span>1.8%</span><span>2.9 GB</span><span class="proc-pid">3320</span></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <!-- ================= TODOS ================= -->
+            <section class="tab-panel" data-panel="todos" aria-label="TODOs">
+              <div class="tab-header">
+                <h2>TODOs</h2>
+                <span class="tab-header-sub">Collected from every task file in the workspace</span>
+              </div>
+              <div class="todo-groups" id="todo-groups"></div>
+            </section>
+
+            <!-- ================= IDEA HUB ================= -->
+            <section class="tab-panel" data-panel="idea-hub" aria-label="Idea Hub">
+              <div class="tab-header">
+                <h2>Idea Hub</h2>
+                <span class="tab-header-sub">Node canvas for incubating ideas before they become projects</span>
+              </div>
+              <div class="idea-canvas">
+                <!-- Edges are drawn first so the opaque node fills mask their ends.
+                     The root fill must stay opaque or the lines read straight through it. -->
+                <svg viewBox="0 0 760 340" role="img" aria-label="Idea graph: a central node connected to five branch ideas">
+                  <g class="idea-edges">
+                    <line x1="380" y1="172" x2="165" y2="71"></line>
+                    <line x1="380" y1="172" x2="595" y2="71"></line>
+                    <line x1="380" y1="172" x2="145" y2="269"></line>
+                    <line x1="380" y1="172" x2="405" y2="297"></line>
+                    <line x1="380" y1="172" x2="625" y2="259"></line>
+                  </g>
+                  <g class="idea-nodes">
+                    <g class="idea-node"><rect x="90"  y="52"  width="150" height="38" rx="6"></rect><text x="165" y="71">Research</text></g>
+                    <g class="idea-node"><rect x="520" y="52"  width="150" height="38" rx="6"></rect><text x="595" y="71">Prototype</text></g>
+                    <g class="idea-node"><rect x="70"  y="250" width="150" height="38" rx="6"></rect><text x="145" y="269">Design system</text></g>
+                    <g class="idea-node"><rect x="330" y="278" width="150" height="38" rx="6"></rect><text x="405" y="297">Automation</text></g>
+                    <g class="idea-node"><rect x="550" y="240" width="150" height="38" rx="6"></rect><text x="625" y="259">Docs</text></g>
+                    <g class="idea-node idea-node-root"><rect x="310" y="150" width="140" height="44" rx="6"></rect><text x="380" y="172">Workspace</text></g>
+                  </g>
+                </svg>
+              </div>
+            </section>
+
+            <!-- ================= ACTIVE PROCESSES ================= -->
+            <section class="tab-panel" data-panel="active-processes" aria-label="Active Processes">
+              <div class="section-block">
+                <div class="block-head">
+                  <h3>Projects</h3>
+                  <span class="block-sub" id="projects-count">8 tracked</span>
+                  <button class="toolbar-btn" type="button" data-demo-action="Rescan projects">Rescan</button>
+                </div>
+                <div class="registry-table" id="projects-registry"></div>
+              </div>
+
+              <div class="processes-header">
+                <h2>Active Processes</h2>
+                <span class="proc-summary" id="proc-summary"></span>
+                <div class="proc-header-tools">
+                  <input class="proc-search" id="proc-search" type="text" spellcheck="false" autocomplete="off" placeholder="Filter processes..." aria-label="Filter processes">
+                  <div class="proc-filters" id="proc-filters">
+                    <button class="proc-chip is-on" type="button" data-pfilter="all">All</button>
+                    <button class="proc-chip" type="button" data-pfilter="running">Active</button>
+                    <button class="proc-chip" type="button" data-pfilter="offline">Offline</button>
+                  </div>
+                </div>
+              </div>
+              <div class="proc-cards" id="proc-cards"></div>
+
+              <div class="section-block">
+                <div class="block-head">
+                  <h3>Ports</h3>
+                  <span class="block-sub">from the workspace port registry</span>
+                  <button class="toolbar-btn" type="button" data-demo-action="Scan ports">Scan</button>
+                </div>
+                <div class="ports-table">
+                  <div class="ports-thead"><span>Port</span><span>Project</span><span>Service</span><span>Env</span><span>Status</span></div>
+                  <div class="ports-row"><span class="mono">5173</span><span>Averardo Bank</span><span>Dev server</span><span class="badge">dev</span><span class="badge success">listening</span></div>
+                  <div class="ports-row"><span class="mono">3000</span><span>Crab Controller</span><span>Bot dashboard</span><span class="badge">dev</span><span class="badge success">listening</span></div>
+                  <div class="ports-row"><span class="mono">8765</span><span>Glue Factory</span><span>Local service</span><span class="badge">dev</span><span class="badge">free</span></div>
+                  <div class="ports-row"><span class="mono">5280</span><span>Lobster Bot</span><span>Debug endpoint</span><span class="badge">dev</span><span class="badge">free</span></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================= ACTIVE TERMINALS ================= -->
+            <section class="tab-panel" data-panel="active-terminals" aria-label="Active Terminals">
+              <div class="tab-header">
+                <h2>Active Terminals</h2>
+                <span class="tab-header-sub">One shell per project, each pinned to its own working directory</span>
+              </div>
+              <div class="term-grid">
+                <article class="term-card">
+                  <header class="term-head"><span class="status-dot running"></span><span class="term-title">Averardo Bank</span><span class="term-cwd mono">workspace/averardo bank</span></header>
+                  <pre class="term-body mono">&gt; npm run dev
+  ready in 412 ms
+  Local:   http://localhost:5173/
+  watching for file changes
+  build finished in 18.42s</pre>
+                </article>
+                <article class="term-card">
+                  <header class="term-head"><span class="status-dot"></span><span class="term-title">Crab Controller</span><span class="term-cwd mono">workspace/crab controller</span></header>
+                  <pre class="term-body mono">&gt; node src/index.js
+Logged in, 6 guilds
+Ready, listening for commands
+Sample output line for the template</pre>
+                </article>
+              </div>
+            </section>
+
+            <!-- ================= DEV ================= -->
+            <section class="tab-panel" data-panel="dev" aria-label="Dev">
+              <div class="tab-header">
+                <h2>Dev</h2>
+                <span class="tab-header-sub">Workspace tooling: semantic tag search and instruction locks</span>
+              </div>
+
+              <div class="section-block">
+                <div class="block-head"><h3>Tag Search</h3><span class="block-sub">semantic lookup over the code index</span></div>
+                <input class="proc-search dev-search" type="text" value="sample search query" spellcheck="false" aria-label="Tag search query">
+                <div class="dev-results mono">
+                  <div class="dev-result"><span class="dev-code">TAG-001</span><span class="dev-path">src/module/example.js:12</span></div>
+                  <div class="dev-result"><span class="dev-code">TAG-001</span><span class="dev-path">src/module/example.css:4</span></div>
+                  <div class="dev-result"><span class="dev-code">TAG-002</span><span class="dev-path">src/module/second.js:20</span></div>
+                </div>
+              </div>
+
+              <div class="section-block">
+                <div class="block-head"><h3>Instruction Locks</h3><span class="block-sub">frozen context snapshot per project</span></div>
+                <div class="lock-list">
+                  <div class="lock-row"><span class="status-dot running"></span><span class="lock-name">Crab Controller</span><span class="lock-meta">locked 2h ago, 4 docs</span><button class="toolbar-btn" type="button" data-demo-action="Unlock">Unlock</button></div>
+                  <div class="lock-row"><span class="status-dot"></span><span class="lock-name">Glue Factory</span><span class="lock-meta">unlocked</span><button class="toolbar-btn" type="button" data-demo-action="Lock">Lock</button></div>
+                  <div class="lock-row"><span class="status-dot"></span><span class="lock-name">Averardo Bank</span><span class="lock-meta">unlocked</span><button class="toolbar-btn" type="button" data-demo-action="Lock">Lock</button></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ================= LOGS ================= -->
+            <section class="tab-panel" data-panel="logs" aria-label="Logs">
+              <div class="tab-header">
+                <h2>Logs</h2>
+                <span class="tab-header-sub">In-memory ring buffer, newest last</span>
+              </div>
+              <div class="log-filters" id="log-filters">
+                <button class="proc-chip is-on" type="button" data-level="all">All</button>
+                <button class="proc-chip" type="button" data-level="debug">Debug</button>
+                <button class="proc-chip" type="button" data-level="info">Info</button>
+                <button class="proc-chip" type="button" data-level="warn">Warn</button>
+                <button class="proc-chip" type="button" data-level="error">Error</button>
+              </div>
+              <div class="log-list mono" id="log-list"></div>
+            </section>
+
+            <!-- ================= SETTINGS ================= -->
+            <section class="tab-panel" data-panel="settings" aria-label="Settings">
+              <div class="tab-header">
+                <h2>Settings</h2>
+                <span class="tab-header-sub">Every colour resolves through tokens, so a theme restyles the whole app with no per-component work</span>
+              </div>
+
+              <div class="section-block">
+                <div class="block-head"><h3>Theme</h3><span class="block-sub">8 built in</span></div>
+                <div class="theme-grid" id="theme-grid"></div>
+              </div>
+
+              <div class="section-block">
+                <div class="block-head"><h3>Layout</h3></div>
+                <div class="setting-row">
+                  <span class="setting-label">Sidebar position</span>
+                  <div class="seg" data-seg="sidebar">
+                    <button class="seg-btn is-on" type="button" data-value="left">Left</button>
+                    <button class="seg-btn" type="button" data-value="right">Right</button>
+                    <button class="seg-btn" type="button" data-value="hidden">Hidden</button>
+                  </div>
+                </div>
+                <div class="setting-row">
+                  <span class="setting-label">Status bar</span>
+                  <div class="seg" data-seg="status">
+                    <button class="seg-btn is-on" type="button" data-value="bottom">Bottom</button>
+                    <button class="seg-btn" type="button" data-value="top">Top</button>
+                    <button class="seg-btn" type="button" data-value="hidden">Hidden</button>
+                  </div>
+                </div>
+                <div class="setting-row">
+                  <span class="setting-label">UI scale</span>
+                  <input class="setting-range" id="ui-scale" type="range" min="90" max="120" value="100" step="5" aria-label="UI scale">
+                  <span class="setting-value mono" id="ui-scale-val">100%</span>
+                </div>
+              </div>
+
+              <div class="section-block">
+                <div class="block-head"><h3>Effects</h3></div>
+                <div class="setting-row">
+                  <span class="setting-label">CRT scanlines</span>
+                  <button class="switch" id="sw-crt" type="button" role="switch" aria-checked="false"><span class="switch-knob"></span></button>
+                </div>
+                <div class="setting-row">
+                  <span class="setting-label">ASCII tab header</span>
+                  <button class="switch" id="sw-ascii" type="button" role="switch" aria-checked="false"><span class="switch-knob"></span></button>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </main>
+      </div>
+
+      <!-- ---------- Status bar ---------- -->
+      <footer class="nest-statusbar" id="nest-statusbar">
+        <div class="status-left">
+          <span class="status-runtime">TAURI</span>
+          <span class="status-project" id="status-project">Crab Controller</span>
+          <span class="status-scope">scope: workspace/crab controller</span>
+        </div>
+        <div class="status-right">
+          <span class="status-logs" id="status-logs"></span>
+          <button class="status-btn" type="button" data-demo-action="Quick Note">&#9783; Note</button>
+          <button class="status-btn" type="button" data-demo-action="New terminal">&#10097; Term</button>
+          <button class="status-btn" id="btn-freeze" type="button" title="Pause all background polling">&#10052; Freeze</button>
+          <button class="status-btn" id="btn-away" type="button" title="Queue events while away">Away</button>
+          <button class="status-btn" id="btn-keys" type="button">Keys</button>
+          <button class="status-btn" type="button" data-open-tab="settings" aria-label="Settings">&#9881;</button>
+          <button class="status-btn" id="btn-ai" type="button">&#9711; AI</button>
+        </div>
+      </footer>
+
+      <!-- ---------- Overlays (scoped to the window) ---------- -->
+      <div class="cmd-palette-overlay hidden" id="cmd-overlay" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="cmd-palette">
+          <div class="cmd-palette-search">
+            <span class="cmd-palette-icon">&#8984;</span>
+            <input class="cmd-palette-input" id="cmd-input" type="text" placeholder="Type a command, tab or project..." aria-label="Command palette search">
+            <span class="cmd-palette-hint">Esc to close</span>
+          </div>
+          <div class="cmd-palette-results" id="cmd-results"></div>
+        </div>
+      </div>
+
+      <div class="keys-overlay hidden" id="keys-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+        <div class="keys-panel">
+          <div class="keys-head"><span>Keyboard Shortcuts</span><button class="titlebar-btn" id="keys-close" type="button" aria-label="Close">&#10005;</button></div>
+          <div class="keys-grid">
+            <div class="keys-row"><kbd>Ctrl</kbd><kbd>K</kbd><span>Command palette</span></div>
+            <div class="keys-row"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F</kbd><span>Global search</span></div>
+            <div class="keys-row"><kbd>Ctrl</kbd><kbd>Tab</kbd><span>Cycle tabs by recent use</span></div>
+            <div class="keys-row"><kbd>Ctrl</kbd><kbd>`</kbd><span>New terminal</span></div>
+            <div class="keys-row"><kbd>Ctrl</kbd><kbd>?</kbd><span>This panel</span></div>
+            <div class="keys-row"><kbd>Esc</kbd><span>Close overlay</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-popup hidden" id="ai-popup" role="dialog" aria-label="AI connection">
+        <p>Enter a local model address or an OpenAI-compatible endpoint.</p>
+        <input type="text" value="http://localhost:1234/v1" aria-label="AI endpoint" readonly>
+        <div class="ai-popup-actions">
+          <button class="toolbar-btn toolbar-btn-primary" type="button" data-demo-action="Connect">Connect</button>
+          <button class="toolbar-btn" id="ai-cancel" type="button">Cancel</button>
+        </div>
+      </div>
+
+      <div class="launcher-dropdown hidden" id="launcher-dropdown" role="menu" aria-label="Open a tab"></div>
+
+      <div class="away-veil" id="away-veil" aria-hidden="true"><span>AWAY</span></div>
+    </div>
+
+    <footer class="demo-footer">
+      <p>This is a UI/UX demonstration showcase. Not a live application, and all content is placeholder.</p>
+      <a href="../../projects.html" class="footer-link">&larr; Back to Projects</a>
+    </footer>
+  </div>
+
+  <script src="js/demo.js"></script>
+</body>
+</html>

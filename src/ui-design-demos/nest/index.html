@@ -140,8 +140,9 @@
 
   <script>
     const demoVersions = [
-      { id: '1', href: '../nest/' },
-      { id: '2', href: '../nest-v2/' }
+      { id: '1', href: '../nest/',    folder: '/nest/' },
+      { id: '2', href: '../nest-v2/', folder: '/nest-v2/' },
+      { id: '3', href: '../nest-v3/', folder: '/nest-v3/' }
     ];
     const demoTabs = document.getElementById('demo-tabs');
 
@@ -161,10 +162,11 @@
     }
 
     if (demoTabs) {
-      const isV2Page = window.location.pathname.includes('/nest-v2/');
+      const currentPage = window.location.pathname;
+      const currentVersion = demoVersions.find(v => currentPage.includes(v.folder)) || demoVersions[0];
 
-      demoTabs.innerHTML = demoVersions.map((version, index) => {
-        const isActive = isV2Page ? version.id === '2' : version.id === '1';
+      demoTabs.innerHTML = demoVersions.map((version) => {
+        const isActive = version.id === currentVersion.id;
         return `<button class="demo-tab${isActive ? ' active' : ''}" type="button" role="tab" data-href="${version.href}" aria-selected="${isActive}" aria-label="Open Version ${version.id}">Version ${version.id}</button>`;
       }).join('') + '<span class="demo-tab-underline" aria-hidden="true"></span>';
 
